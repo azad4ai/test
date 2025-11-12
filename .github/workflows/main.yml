@@ -1,0 +1,14 @@
+name: Cloud Defense Scan
+on: [push]
+
+jobs:
+security_scan:
+runs-on: self-hosted
+steps:
+- name: Checkout repo
+          uses: actions/checkout@v2
+
+- name: Run Cloud Defense Scan
+run: |
+echo "Running security scan..."
+        cdefense scan --api-key ${{ secrets.API_KEY }} --project-name ${{ github.repository }}
